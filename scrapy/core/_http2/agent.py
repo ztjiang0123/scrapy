@@ -111,7 +111,7 @@ class H2Agent:
         self,
         reactor: ReactorBase,
         pool: H2ConnectionPool,
-        context_factory: BrowserLikePolicyForHTTPS = BrowserLikePolicyForHTTPS(),  # noqa: B008
+        context_factory: BrowserLikePolicyForHTTPS = BrowserLikePolicyForHTTPS(),
         connect_timeout: float | None = None,
         bind_address: tuple[str, int] | None = None,
     ) -> None:

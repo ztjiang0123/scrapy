@@ -62,7 +62,7 @@ class _ScrapyClientContextFactory(BrowserLikePolicyForHTTPS):
 
     def __init__(
         self,
-        method: int | None = SSL.SSLv23_METHOD,  # noqa: S503
+        method: int | None = SSL.SSLv23_METHOD,
         tls_verbose_logging: bool = False,
         tls_ciphers: str | None = None,
         *args: Any,
@@ -87,7 +87,7 @@ class _ScrapyClientContextFactory(BrowserLikePolicyForHTTPS):
     def from_crawler(
         cls,
         crawler: Crawler,
-        method: int | None = SSL.SSLv23_METHOD,  # noqa: S503
+        method: int | None = SSL.SSLv23_METHOD,
         *args: Any,
         **kwargs: Any,
     ) -> Self:
@@ -256,7 +256,7 @@ class _AcceptableProtocolsContextFactory:
             hostname, port
         )
         if not TWISTED_TLS_NEW_IMPL:
-            from twisted.internet._sslverify import (  # type: ignore[attr-defined]  # noqa: PLC0415  # pylint: disable=no-name-in-module
+            from twisted.internet._sslverify import (  # type: ignore[attr-defined]  # pylint: disable=no-name-in-module
                 _setAcceptableProtocols,
             )
 

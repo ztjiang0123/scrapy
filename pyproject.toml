@@ -473,9 +473,25 @@ split-on-trailing-comma = false
 # Optional debugger import, loaded lazily only when the user passes --pdb.
 "scrapy/commands/__init__.py" = ["PLC0415", "T100"]
 
+# `vars` is part of the documented, user-overridable update_vars() hook API.
+"scrapy/commands/shell.py" = ["A002"]
+
 # Trusted subprocess invocations (fixed argv, no shell) used by the commands.
 "scrapy/commands/bench.py" = ["S603"]
 "scrapy/commands/edit.py" = ["S603"]
+
+# Default context factory is instantiated once as an argument default on purpose.
+"scrapy/core/_http2/agent.py" = ["B008"]
+
+# Randomized download delay is timing jitter, not a cryptographic use of random.
+"scrapy/core/downloader/__init__.py" = ["S311"]
+
+# Twisted internals are imported lazily to patch them only when the fallback runs.
+"scrapy/core/downloader/_idna_patch.py" = ["PLC0415"]
+
+# SSLv23_METHOD default is kept for backward compatibility with existing configs;
+# the legacy Twisted TLS symbol is imported lazily on the old-Twisted code path.
+"scrapy/core/downloader/contextfactory.py" = ["PLC0415", "S503"]
 
 "tests/**" = [
     # Skip bandit and allow blocking file I/O in tests
