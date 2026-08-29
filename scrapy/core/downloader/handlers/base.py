@@ -28,5 +28,5 @@ class BaseDownloadHandler(ABC):
     async def download_request(self, request: Request) -> Response:
         raise NotImplementedError
 
-    async def close(self) -> None:  # noqa: B027
+    async def close(self) -> None:
         pass

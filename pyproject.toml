@@ -493,6 +493,14 @@ split-on-trailing-comma = false
 # the legacy Twisted TLS symbol is imported lazily on the old-Twisted code path.
 "scrapy/core/downloader/contextfactory.py" = ["PLC0415", "S503"]
 
+# Optional no-op lifecycle hook on an abstract base class; subclasses override
+# it only when they need cleanup, so it intentionally has no abstract decorator.
+"scrapy/core/downloader/handlers/base.py" = ["B027"]
+
+# botocore is an optional dependency (the "s3" extra), so it must be imported
+# lazily inside the methods that use it rather than at module top level.
+"scrapy/core/downloader/handlers/s3.py" = ["PLC0415"]
+
 "tests/**" = [
     # Skip bandit and allow blocking file I/O in tests
     "ASYNC240",

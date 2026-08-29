@@ -631,7 +631,20 @@ class ExecutionEngine:
         )
         return deferred_from_coro(self.close_spider_async(reason=reason))
 
-    async def close_spider_async(self, *, reason: str = "cancelled") -> None:  # noqa: PLR0912
+    async def _close_scheduler(self, reason: str, spider: Spider) -> None:
+        """Close the scheduler of the current slot, if it supports closing."""
+        assert self._slot is not None
+        if not hasattr(self._slot.scheduler, "close"):
+            return
+        try:
+            if (d := self._slot.scheduler.close(reason)) is not None:
+                await maybe_deferred_to_future(d)
+        except Exception:
+            logger.error(
+                "Scheduler close failure", exc_info=True, extra={"spider": spider}
+            )
+
+    async def close_spider_async(self, *, reason: str = "cancelled") -> None:
         """Close (cancel) spider and clear all its outstanding requests.
 
         .. versionadded:: 2.14
@@ -671,14 +684,7 @@ class ExecutionEngine:
                 "Scraper close failure", exc_info=True, extra={"spider": spider}
             )
 
-        if hasattr(self._slot.scheduler, "close"):
-            try:
-                if (d := self._slot.scheduler.close(reason)) is not None:
-                    await maybe_deferred_to_future(d)
-            except Exception:
-                logger.error(
-                    "Scheduler close failure", exc_info=True, extra={"spider": spider}
-                )
+        await self._close_scheduler(reason, spider)
 
         try:
             await self.signals.send_catch_log_async(

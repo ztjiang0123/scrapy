@@ -31,8 +31,8 @@ class S3DownloadHandler(BaseDownloadHandler):
         self.anon = not aws_access_key_id and not aws_secret_access_key
         self._signer = None
         if not self.anon:
-            import botocore.auth  # noqa: PLC0415
-            import botocore.credentials  # noqa: PLC0415
+            import botocore.auth
+            import botocore.credentials
 
             SignerCls = botocore.auth.AUTH_TYPE_MAPS["s3"]
             # botocore.auth.BaseSigner doesn't have an __init__() with args, only subclasses do
@@ -66,7 +66,7 @@ class S3DownloadHandler(BaseDownloadHandler):
         if self.anon:
             request = request.replace(url=url)
         else:
-            import botocore.awsrequest  # noqa: PLC0415
+            import botocore.awsrequest
 
             awsrequest = botocore.awsrequest.AWSRequest(
                 method=request.method,
