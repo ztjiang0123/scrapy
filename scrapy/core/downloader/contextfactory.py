@@ -62,7 +62,7 @@ class _ScrapyClientContextFactory(BrowserLikePolicyForHTTPS):
 
     def __init__(
         self,
-        method: int | None = SSL.SSLv23_METHOD,  # noqa: S503
+        method: int | None = SSL.SSLv23_METHOD,
         tls_verbose_logging: bool = False,
         tls_ciphers: str | None = None,
         *args: Any,
@@ -87,7 +87,7 @@ class _ScrapyClientContextFactory(BrowserLikePolicyForHTTPS):
     def from_crawler(
         cls,
         crawler: Crawler,
-        method: int | None = SSL.SSLv23_METHOD,  # noqa: S503
+        method: int | None = SSL.SSLv23_METHOD,
         *args: Any,
         **kwargs: Any,
     ) -> Self:

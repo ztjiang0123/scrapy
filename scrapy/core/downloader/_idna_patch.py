@@ -65,7 +65,7 @@ def _install_twisted_idna_fallbacks() -> None:
     not just ``twisted.internet._idna``. Names that are missing or already
     patched are left alone.
     """
-    from twisted.internet import _resolver, _sslverify, endpoints  # noqa: PLC0415
+    from twisted.internet import _resolver, _sslverify, endpoints
 
     patches = (
         ("_idnaBytes", _original_idna_bytes, _patched_idna_bytes),
