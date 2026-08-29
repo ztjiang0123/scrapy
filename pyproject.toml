@@ -489,8 +489,9 @@ split-on-trailing-comma = false
 # Twisted internals are imported lazily to patch them only when the fallback runs.
 "scrapy/core/downloader/_idna_patch.py" = ["PLC0415"]
 
-# SSLv23_METHOD default is kept for backward compatibility with existing configs.
-"scrapy/core/downloader/contextfactory.py" = ["S503"]
+# SSLv23_METHOD default is kept for backward compatibility with existing configs;
+# the legacy Twisted TLS symbol is imported lazily on the old-Twisted code path.
+"scrapy/core/downloader/contextfactory.py" = ["PLC0415", "S503"]
 
 "tests/**" = [
     # Skip bandit and allow blocking file I/O in tests
