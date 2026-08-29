@@ -467,6 +467,16 @@ split-on-trailing-comma = false
 "scrapy/linkextractors/__init__.py" = ["E402"]
 "scrapy/spiders/__init__.py" = ["E402"]
 
+# Benchmark helper script that drives its own reactor at the module level.
+"extras/qps-bench-server.py" = ["TID253"]
+
+# Optional debugger import, loaded lazily only when the user passes --pdb.
+"scrapy/commands/__init__.py" = ["PLC0415", "T100"]
+
+# Trusted subprocess invocations (fixed argv, no shell) used by the commands.
+"scrapy/commands/bench.py" = ["S603"]
+"scrapy/commands/edit.py" = ["S603"]
+
 "tests/**" = [
     # Skip bandit and allow blocking file I/O in tests
     "ASYNC240",

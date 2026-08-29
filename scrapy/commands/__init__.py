@@ -157,7 +157,7 @@ class ScrapyCommand(ABC):
 
         if opts.pdb:
             try:
-                import ipdb  # noqa: T100,PLC0415
+                import ipdb
             except ImportError:
                 pass
             else:

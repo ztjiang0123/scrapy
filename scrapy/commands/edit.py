@@ -22,7 +22,7 @@ def _edit_file(editor: str, file_path: str | os.PathLike[str]) -> int:
     :func:`shlex.split` and the file is passed as a separate argument, so no
     shell is involved.
     """
-    return subprocess.call([*shlex.split(editor), os.fspath(file_path)])  # noqa: S603
+    return subprocess.call([*shlex.split(editor), os.fspath(file_path)])
 
 
 class Command(ScrapyCommand):

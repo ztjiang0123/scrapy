@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import sys
-from argparse import Namespace  # noqa: TC003
 from typing import TYPE_CHECKING, Any
 
 from w3lib.url import is_url
@@ -13,7 +12,7 @@ from scrapy.utils.datatypes import SequenceExclude
 from scrapy.utils.spider import DefaultSpider, spidercls_for_request
 
 if TYPE_CHECKING:
-    from argparse import ArgumentParser
+    from argparse import ArgumentParser, Namespace
     from collections.abc import AsyncIterator
 
     from scrapy import Spider
